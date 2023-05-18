@@ -1,0 +1,31 @@
+### Xinyi Rui - 1135819 - xrrui@student.unimelb.edu.au
+### Wenxin Zhu - 1136510 - wenxin2@student.unimelb.edu.au
+### Tingzheng Ren - 1287032 - tingzhengr@student.unimelb.edu.au
+### Shiqi Liang - 1420147 - liasl1@student.unimelb.edu.au
+### Jingchen Shi - 1135824 - jingchens1@student.unimelb.edu.au
+
+
+# define the name of this whold ansible task
+- name: Install Python with Mastodon and CouchDB
+  hosts: localhost # running host should be local
+  become: yes # access given
+  tasks:
+    - name: Install Python3 # first task: use 'apt' command to install the latest Python3
+      apt:
+        name: python3
+        state: latest
+
+    - name: Install pip # second task: use 'apt' command to install the latest pip for Python3
+      apt:
+        name: python3-pip
+        state: latest
+
+    - name: Install Mastodon and CouchDB # third task: use 'pip' command to download related Python modules
+      pip:
+        name: "Mastodon.py, couchdb, schedule"
+        state: latest
+
+    - name: Run Python application # fourth task: run ansible command in cmd to start collecting Mastodon data
+      ansible.builtin.command:
+        cmd: "python3 Mastodon_collection.py"
+    
