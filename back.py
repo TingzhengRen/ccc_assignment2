@@ -114,8 +114,7 @@ def api_2():
     query = {
         "selector": {
             "_id": {"$gt": None}
-        },
-        'limit': 5000
+        }
     }
     results = []
     for row in db3.find(query):
@@ -131,8 +130,7 @@ def api_3():
     query = {
         "selector": {
             "_id": {"$gt": None}
-        },
-        'limit': 5000
+        }
     }
     results = []
     for row in db4.find(query):
@@ -142,6 +140,25 @@ def api_3():
 db_name5 = 'sudo'
 # get the database
 db5 = couch[db_name5]
+
+def extract_number(key):
+    # 从键中提取数字部分
+    return int(''.join(filter(str.isdigit, key)))
+
+def extract_numbers(items):
+    numbers_only = []
+    for item in items:
+        if isinstance(item, (int, float)):
+            numbers_only.append(item)
+        elif isinstance(item, str):
+            try:
+                number = float(item)
+                numbers_only.append(number)
+            except ValueError:
+                # Ignore non-numeric values
+                pass
+    return numbers_only
+
 
 @app.route('/api_4/broke_line')
 def api_4():
@@ -160,20 +177,26 @@ def api_4():
     m_keys_to_extract = []
     for feature in results[0]['features']:
         properties = feature['properties']
-        f_keys_to_extract.extend(key for key in properties.keys() if 'income' in key and key.startswith('f_'))
-        m_keys_to_extract.extend(key for key in properties.keys() if 'income' in key and key.startswith('m_'))
+        f_keys_to_extract.extend((key, properties[key]) for key in properties.keys() if 'income' in key and key.startswith('f_'))
+        m_keys_to_extract.extend((key, properties[key]) for key in properties.keys() if 'income' in key and key.startswith('m_'))
 
-    # Accessing the values of the extracted keys
-    f_extracted_values = []
-    m_extracted_values = []
-    for feature in results[0]['features']:
-        properties = feature['properties']
-        f_values = [properties[key] for key in f_keys_to_extract]
-        m_values = [properties[key] for key in m_keys_to_extract]
-        f_extracted_values.append(f_values)
-        m_extracted_values.append(m_values)
+    f_sorted_list = sorted(f_keys_to_extract, key=lambda x: int(''.join(filter(str.isdigit, x[0]))))
+    m_sorted_list = sorted(m_keys_to_extract, key=lambda x: int(''.join(filter(str.isdigit, x[0]))))
 
-    return {'data': [f_extracted_values, m_extracted_values]}
+    list_1 = [item for i, item in enumerate(f_sorted_list) if i % 2 == 0]
+    list_2 = [item for i, item in enumerate(f_sorted_list) if i % 2 == 1]
+    list_3 = [item for i, item in enumerate(m_sorted_list) if i % 2 == 0]
+    list_4 = [item for i, item in enumerate(m_sorted_list) if i % 2 == 1]
+
+    list_1_numbers = extract_numbers([item[1] for item in list_1])
+    list_2_numbers = extract_numbers([item[1] for item in list_2])
+    list_3_numbers = extract_numbers([item[1] for item in list_3])
+    list_4_numbers = extract_numbers([item[1] for item in list_4])
+
+
+
+    return {'data': [list_1_numbers,list_2_numbers,list_3_numbers,list_4_numbers]}
+
 
 
 
