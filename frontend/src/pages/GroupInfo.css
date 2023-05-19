@@ -1,0 +1,26 @@
+.member h1 {
+    font-weight: 400;
+    font-size: 40px;
+    color: black;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    transform: translateY(-20px);
+  }
+
+  .member {
+    display: flex;
+    flex-direction: column;
+    height: 55%;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .member p {
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 10px;
+    transform: translateY(-20px);
+  }
