@@ -1,7 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
-import nltk
 from nltk.corpus import stopwords
 from bs4 import BeautifulSoup
 from collections import defaultdict
