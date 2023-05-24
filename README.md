@@ -1,7 +1,7 @@
 # CCC_Assignment2
 
 ## Team Member
-Xinyi Rui - 1135819 - xrrui@student.unimelb.edu.au
+Xinyi Rui - 1135819 - xrrui@student.unimelb.edu.au \\
 Wenxin Zhu - 1136510 - wenxin2@student.unimelb.edu.au
 Tingzheng Ren - 1287032 - tingzhengr@student.unimelb.edu.au
 Shiqi Liang - 1420147 - liasl1@student.unimelb.edu.au
