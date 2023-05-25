@@ -7,21 +7,15 @@ from collections import defaultdict
 
 import couchdb
 
-# admin and password
 admin = 'tr'
 password = 'gg'
-# url address to visit couchdb
 url = f'http://{admin}:{password}@172.26.134.244:5984/'
 
-# get couchdb instance
 couch = couchdb.Server(url)
 
-# identify the database name
 db_name1 = 'mastodon'
-# get the database
 db1 = couch[db_name1]
 
-# 
 app = Flask(__name__)
 api = Api(app)
 CORS(app)
@@ -29,16 +23,12 @@ CORS(app)
 
 
 def extract_useful_info(text):
-    # 解析HTML文本
     soup = BeautifulSoup(text, 'html.parser')
 
-    # 提取纯文本
     plain_text = soup.get_text()
 
-    # 分割成单词
     words = plain_text.split()
 
-    # 统计词频
     word_counts = defaultdict(int)
     for word in words:
         word_counts[word] += 1
@@ -200,4 +190,4 @@ def api_4():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port='8080')
+    app.run(debug=True, host='172.26.134.244', port='8080')
