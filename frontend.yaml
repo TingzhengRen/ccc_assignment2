@@ -1,0 +1,33 @@
+---
+- name: Deploy React frontend
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install Node.js and npm
+      apt:
+        name: nodejs
+        state: latest
+
+    - name: run npm install leaflet
+      shell: npm install leaflet
+
+    - name: run npm install echarts-for-react
+      shell: npm install echarts-for-react
+
+    - name: run npm install echarts-wordcloud
+      shell: npm install echarts-wordcloud
+
+    - name: run npm install react-router-dom
+      shell: npm install react-router-dom
+    
+    - name: run npm install react-leaflet
+      shell: npm install react-leaflet
+
+    - name: Run npm install react
+      shell: npm install react
+
+    - name: Run npm install antd
+      shell: npm install antd
+
+    - name: run frontend file
+      commond: npm start
