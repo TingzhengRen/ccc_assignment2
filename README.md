@@ -12,16 +12,17 @@ Shiqi Liang - 1420147 - liasl1@student.unimelb.edu.au \\
 Jingchen Shi - 1135824 - jingchens1@student.unimelb.edu.au \\
 
 ## Folder Structures
-Ansible:
+Ansible: automation
 
-fronted: the frontend 
+Mastodon, SUDO, twitter-analysis: code for collection
 
+frontend: the frontend code
 
+back.py: file for backend
 
+flask.yaml: ansible for backend
 
-
-
-
+frontend.yaml: ansible for frontend
 
 ## Reference Link
 ### Youtube video
